@@ -1,0 +1,43 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch and Debug Standalone Blazor WebAssembly App",
+            "type": "blazorwasm",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/BlazorVScode",
+            "url": "http://localhost:5124" // Tell launch where to find site
+        },
+        {
+            "name": "Watch",
+            "type": "coreclr",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/BlazorVScode",
+            "program": "dotnet",
+            "args": [
+                "watch",
+                "--project",
+                ".",
+                "--verbose" // Let's us confirm browser connects with hot reload capabilities
+            ],
+            "preLaunchTask": "build" // Ensure we don't watch an unbuilt site
+        },
+        {
+            "name": "Attach",
+            "type": "blazorwasm",
+            "request": "attach",
+            "cwd": "${workspaceFolder}/BlazorVScode",
+            "url": "http://localhost:5124",  // Tell launch where to find site
+            "timeout": 120000, // Allows time for the site to launch
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug with Hot Reload",
+            "configurations": [ "Watch", "Attach" ]
+        }
+    ]
+}
